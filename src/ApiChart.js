@@ -11,7 +11,7 @@ class ApiChart extends Component {
 
     // Call API upon component mount
     componentDidMount() {
-        const endpoint = "https://data.cityofnewyork.us/resource/rc75-m7u3.json";
+        const endpoint = "https://fa.ap.ngrok.io/app/master/userActiveLast30M";
 
         fetch(endpoint)
             .then(response => response.json())
@@ -49,7 +49,7 @@ class ApiChart extends Component {
                             y: this.transformData(this.state.data)['y'],
                             marker: { color: '#ed022d'}}
                     ]}
-                    layout = { {width: 1000, height: 500, title: 'Covid Case Count'} }
+                    layout = { {width: 1000, height: 500, title: 'Người dùng Active (30 ngày gần đây)'} }
                 />
             </div>
         )
