@@ -38,17 +38,20 @@ class ApiChart extends Component {
         return plot_data
     }
 
+
     render() {
         return (
             <div>
                 <Plot
                     data={[
                         {
-                            type: 'scatter',
-                            mode: 'lines',
+                            type: 'bar',
                             x: this.transformData(this.state.data)['x'],
                             y: this.transformData(this.state.data)['y'],
-                            marker: {color: '#ed022d'}
+                            marker: {color: 'rgb(158,202,225)'},
+                            text: this.transformData(this.state.data)['y'],
+                            exposition: 'auto',
+                            hovering: 'none'
                         }
                     ]}
                     layout={{
