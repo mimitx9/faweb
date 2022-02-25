@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Plot from 'react-plotly.js';
 
 class ApiChart extends Component {
 
     // Set up states for loading data
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state ={ data: [] }
+        this.state = {data: []}
     }
 
     // Call API upon component mount
@@ -16,12 +16,12 @@ class ApiChart extends Component {
         fetch(endpoint)
             .then(response => response.json())
             .then(data => {
-                this.setState( {data: data} )
+                this.setState({data: data})
             })
     }
 
     // Change data structure
-    transformData (data) {
+    transformData(data) {
         let plot_data = [];
 
         let x = [];
@@ -42,14 +42,24 @@ class ApiChart extends Component {
         return (
             <div>
                 <Plot
-                    data = {[
-                        {type: 'scatter',
+                    data={[
+                        {
+                            type: 'scatter',
                             mode: 'lines',
                             x: this.transformData(this.state.data)['x'],
                             y: this.transformData(this.state.data)['y'],
-                            marker: { color: '#ed022d'}}
+                            marker: {color: '#ed022d'}
+                        }
                     ]}
-                    layout = { {width: 1000, height: 500, title: 'Người dùng Active (30 ngày gần đây)'} }
+                    layout={{
+                        autosize: true,
+                        title: 'Người dùng Active (30 ngày gần đây)'
+                    }}
+                    useResizeHandler={true}
+                    style={{
+                        width: "100%",
+                        height: "100%"
+                    }}
                 />
             </div>
         )
